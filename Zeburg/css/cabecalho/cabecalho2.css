@@ -1,0 +1,80 @@
+.cabecalhoprincipal {
+    display: flex;
+    height: 150px;
+    width: 100%;
+    flex-direction: row;
+    background-color: black;
+    
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    width: 100vw;
+    align-items: center;
+}
+
+.logo {
+    
+    height: 100%;
+    margin-left: 3%;
+    width: 210px;
+    height: 210px;
+}
+
+.titulologo{
+
+    color: rgb(252, 207, 124);
+    font-family: 'Karla', sans-serif;
+    font-size: 33px;
+    cursor: context-menu;
+    padding: 10px;
+    border-bottom: 1px solid white;
+    align-self: center;
+    
+}
+
+.titulologo:hover {
+
+    color: rgb(230, 179, 84);
+    border-color: rgb(232, 179, 84);
+    transition: 500ms;
+}
+
+.cabecalhoprincipal-nav-link{
+
+    margin-right:30px;
+    font-size: 1.5em;
+    color: blanchedalmond;
+}
+
+.cabecalhoprincipal-nav-link:hover{
+
+    color: #FAC712;
+    transition: 1s; 
+    content:"\01F354";
+    
+   }
+
+   .cabecalhoprincipal-nav{
+
+    font-family: 'Sedan', sans-serif;
+    
+    }
+
+
+   .barrapesquisa {
+
+    color:  #FAC712;
+    width:  292px;
+    height: 17px;
+    border: gray 2px solid;
+    padding: 10px;
+    background-image: linear-gradient(#000000, #1D1E1B) ;
+}
+
+::placeholder {
+
+    color: linear-gradient(#1D1E1B, #000000) ;
+
+}

@@ -1,0 +1,21 @@
+.imagem__fundo{
+    
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+
+}
+
+.bloco__contato{
+
+    background: black;
+    height: 3rem;
+    width: 5rem;
+
+}
+
+.bloco__principal{
+
+    display: flex;
+
+}
