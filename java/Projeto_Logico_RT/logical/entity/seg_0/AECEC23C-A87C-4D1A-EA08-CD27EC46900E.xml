@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="AECEC23C-A87C-4D1A-EA08-CD27EC46900E" name="T_RT_CLIENTE">
+<createdBy>Rober</createdBy>
+<createdTime>2022-03-15 23:46:19 UTC</createdTime>
+<ownerDesignName>Projeto_Logico_RT</ownerDesignName>
+<engineerTo>
+<item key="2BDF6B93-BD05-2E5E-38B6-463DD2B82811" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_CLIENTE" id="971D771C-2CA2-E8EC-17D2-195EDA96213D">
+<createdBy>Rober</createdBy>
+<createdTime>2022-03-15 23:46:36 UTC</createdTime>
+<commentInRDBMS><![CDATA[Este atributo irá receber a chave primária de clientes de Rio Tec. Esse atributo é obrigatório]]></commentInRDBMS>
+<ownerDesignName>Projeto_Logico_RT</ownerDesignName>
+<engineerTo>
+<item key="2BDF6B93-BD05-2E5E-38B6-463DD2B82811" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="NM_CLIENTE" id="826DA059-7192-9AC8-365B-DA0D25EC2B75">
+<createdBy>Rober</createdBy>
+<createdTime>2022-03-15 23:48:01 UTC</createdTime>
+<ownerDesignName>Projeto_Logico_RT</ownerDesignName>
+<engineerTo>
+<item key="2BDF6B93-BD05-2E5E-38B6-463DD2B82811" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F0C4326A-7143-F41C-CDC1-B1C1A733D8E4" name="T_RT_CLIENTE PK">
+<createdBy>Rober</createdBy>
+<createdTime>2022-03-15 23:47:06 UTC</createdTime>
+<ownerDesignName>Projeto_Logico_RT</ownerDesignName>
+<engineerTo>
+<item key="2BDF6B93-BD05-2E5E-38B6-463DD2B82811" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>971D771C-2CA2-E8EC-17D2-195EDA96213D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
