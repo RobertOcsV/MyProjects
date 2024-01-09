@@ -10,7 +10,7 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss'
 })
-export class CoursesComponent implements OnInit {
+export class CoursesComponent {
   courses$: Observable<Course[]>
   displayedColumns = ['curso', 'category']
 
@@ -20,8 +20,6 @@ export class CoursesComponent implements OnInit {
     private coursesService: CoursesService,
     public dialog: MatDialog
     ){
-    // this.courses = []
-    // this.coursesService = new CoursesServices()
     this.courses$ = this.coursesService?.list().pipe(
        catchError( error => {
         this.onError('Erro ao carregar cursos')
@@ -35,9 +33,5 @@ export class CoursesComponent implements OnInit {
     this.dialog.open(ErrorDialogComponent, {
       data: errorMsg
     });
-  }
-
-  ngOnInit(): void{
-
   }
 }
