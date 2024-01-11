@@ -1,16 +1,17 @@
 package com.robert.springcrud.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/hello")
-public class HelloController {
-
-@GetMapping
-public String hello(){
-    return "Hello";
-}
-
+@RequestMapping("/api/courses")
+public class CourseController {
+    
+    @GetMapping
+    public List<Object> list() {
+        return null;
+    }
 }
