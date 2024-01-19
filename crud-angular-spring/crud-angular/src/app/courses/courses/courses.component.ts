@@ -12,7 +12,7 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
 })
 export class CoursesComponent {
   courses$: Observable<Course[]>
-  displayedColumns = ['curso', 'category']
+  displayedColumns = ['_id' ,'curso', 'category']
 
   // coursesService?: CoursesServicesService;
 
