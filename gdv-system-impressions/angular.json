@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "printing-colegio-gdv": {
+    "gdv-system-impressions": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/printing-colegio-gdv",
+            "outputPath": "dist/gdv-system-impressions",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "printing-colegio-gdv:build:production"
+              "buildTarget": "gdv-system-impressions:build:production"
             },
             "development": {
-              "buildTarget": "printing-colegio-gdv:build:development"
+              "buildTarget": "gdv-system-impressions:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "printing-colegio-gdv:build"
+            "buildTarget": "gdv-system-impressions:build"
           }
         },
         "test": {

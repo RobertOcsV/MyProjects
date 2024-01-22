@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'printing-colegio-gdv' title`, () => {
+  it(`should have the 'gdv-system-impressions' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('printing-colegio-gdv');
+    expect(app.title).toEqual('gdv-system-impressions');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, printing-colegio-gdv');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, gdv-system-impressions');
   });
 });
