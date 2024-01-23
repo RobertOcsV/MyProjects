@@ -8,17 +8,32 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+
+
+
+import { HomeUserViewModel } from './viewmodels/home-user.viewmodel';
+import { SideNavHomeViewModel } from './viewmodels/sidenav-home.viewmodel';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeUserViewModel,
+    SideNavHomeViewModel
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatButtonModule
 
   ],
   providers: [],
