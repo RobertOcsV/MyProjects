@@ -8,19 +8,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { HomeAdmComponent } from './home-adm/home-adm.component';
+import { HomeUserComponent } from './home-user/home-user.component';
+
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { HomeAdmComponent } from './home-adm/home-adm.component';
-import { HomeUserComponent } from './home-user/home-user.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MenuComponent } from './shared/menu/menu.component';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeAdmComponent,
-    HomeUserComponent
+    HomeUserComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +38,11 @@ import { HomeUserComponent } from './home-user/home-user.component';
     MatDialogModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatMenuModule
+
 
   ],
   providers: [],
