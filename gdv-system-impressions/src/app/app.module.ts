@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuComponent } from './shared/menu/menu.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -41,7 +42,8 @@ import { MenuComponent } from './shared/menu/menu.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule
 
 
   ],

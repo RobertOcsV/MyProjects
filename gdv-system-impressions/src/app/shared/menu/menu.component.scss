@@ -2,9 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 100%;
+
 }
 .img-format{
-  max-width: 133px;
+  max-width: 6.6em;
   margin-top: 5%;
   margin-left: 2.5rem;
 }
