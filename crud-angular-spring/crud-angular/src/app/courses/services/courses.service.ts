@@ -10,12 +10,12 @@ export class CoursesService {
 
   private readonly API = "api/courses";
 
-  constructor(private httpCliente: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
  list() {
-    return this.httpCliente.get<Course[]>(this.API).pipe(
+    return this.httpClient.get<Course[]>(this.API).pipe(
       first(),
-      delay(5000), //testing
+      // delay(5000), //testing
       tap( courses => console.log(courses))
     );
  }
