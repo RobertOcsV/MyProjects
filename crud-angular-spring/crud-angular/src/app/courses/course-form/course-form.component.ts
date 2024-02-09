@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, NonNullableFormBuilder  } from '@angular/forms';
+import { NonNullableFormBuilder  } from '@angular/forms';
 import { Location } from '@angular/common';
 
 import { CoursesService } from '../services/courses.service';
@@ -37,7 +37,6 @@ export class CourseFormComponent {
     onCancel(){
       this.location.back();
     }
-
 
     private onSucess() {
       this._snackBar.open('Curso Salvo com sucesso!', '', {duration: 5000})
