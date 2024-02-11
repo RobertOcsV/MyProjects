@@ -10,14 +10,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CoursesListComponent {
   @Input() courses: Course[] = [];
   @Output() add = new EventEmitter(false)
+  @Output() edit = new EventEmitter(false)
    readonly displayedColumns = ['curso', 'category', 'actions']
 
   constructor(private router: Router,
   private route: ActivatedRoute){}
 
-
-
   onAdd() {
     this.add.emit(true);
+  }
+  
+  onEdit(course: Course){
+    this.edit.emit(course);
   }
 }
