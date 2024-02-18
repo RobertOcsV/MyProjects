@@ -1,5 +1,5 @@
 
-import { Injectable, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { Observable, of } from 'rxjs';
 

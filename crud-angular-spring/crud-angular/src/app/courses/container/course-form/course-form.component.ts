@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 
 import { CoursesService } from '../../services/courses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from '../../model/course';
 
 @Component({
   selector: 'app-course-form',
@@ -13,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CourseFormComponent {
 
   form = this.formBuilder.group({
+    _id: [''],
     name: [''],
     category: ['']
   })
@@ -20,11 +23,16 @@ export class CourseFormComponent {
     constructor(private _snackBar: MatSnackBar,
       private formBuilder: NonNullableFormBuilder,
       private service: CoursesService,
-      private location: Location){
-
+      private location: Location,
+      private route: ActivatedRoute){
     }
 
-    onSubmit() {
+    ngOnInit(): void{
+      const course: Course = this.route.snapshot.data['course'];
+      this.form.setValue(course);
+    }
+
+    onSubmit() {   
       this.service.save(this.form.value).subscribe({
         next: () => this.onSucess(),
         error: () => {
