@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NonNullableFormBuilder  } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
 import { CoursesService } from '../../services/courses.service';
@@ -16,42 +16,60 @@ export class CourseFormComponent {
 
   form = this.formBuilder.group({
     _id: [''],
-    name: [''],
-    category: ['']
+    name: ['', [Validators.required, Validators.maxLength(200)]],
+    category: ['', [Validators.required]]
   })
 
-    constructor(private _snackBar: MatSnackBar,
-      private formBuilder: NonNullableFormBuilder,
-      private service: CoursesService,
-      private location: Location,
-      private route: ActivatedRoute){
+  constructor(private _snackBar: MatSnackBar,
+    private formBuilder: NonNullableFormBuilder,
+    private service: CoursesService,
+    private location: Location,
+    private route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    const course: Course = this.route.snapshot.data['course'];
+    this.form.setValue(course);
+  }
+
+  onSubmit() {
+    this.service.save(this.form.value).subscribe({
+      next: () => this.onSucess(),
+      error: () => {
+        this.onError();
+      },
+    });
+  }
+
+
+  onCancel() {
+    this.location.back();
+  }
+
+  private onSucess() {
+    this._snackBar.open('Curso Salvo com sucesso!', '', { duration: 5000 })
+    this.onCancel();
+  }
+
+  private onError() {
+    this._snackBar.open('Erro ao Salvar curso.', '', { duration: 5000 });
+  }
+
+  getErrorMessage(fieldName: string) {
+    const field = this.form.get(fieldName)
+    if (field?.hasError('required')) {
+      return "Campo obrigatório"
     }
 
-    ngOnInit(): void{
-      const course: Course = this.route.snapshot.data['course'];
-      this.form.setValue(course);
+    if(field?.hasError('minlength')){
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredlength'] : 5;
+      return `o Tamanho mínimo precisa ser de ${requiredLength} caracteres`
     }
 
-    onSubmit() {   
-      this.service.save(this.form.value).subscribe({
-        next: () => this.onSucess(),
-        error: () => {
-          this.onError();
-        },
-      });
+    if(field?.hasError('maxlength')){
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredlength'] : 200;
+      return `o Tamanho mínimo precisa ser de ${requiredLength} caracteres`
     }
-
-
-    onCancel(){
-      this.location.back();
-    }
-
-    private onSucess() {
-      this._snackBar.open('Curso Salvo com sucesso!', '', {duration: 5000})
-      this.onCancel();
-    }
-
-    private onError() {
-      this._snackBar.open('Erro ao Salvar curso.', '', {duration: 5000});
-    }
+    return 'Campo inválido'
+  }
 }

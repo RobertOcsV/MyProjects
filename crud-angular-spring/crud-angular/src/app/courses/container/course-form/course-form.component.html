@@ -5,6 +5,7 @@
     <form [formGroup]="form" class="full-width">
       <mat-form-field>
         <input matInput placeholder="Nome" formControlName="name">
+        <mat-error *ngIf="form.get('name')?.invalid">{{ getErrorMessage("name") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
