@@ -16,7 +16,7 @@ export class CourseFormComponent {
 
   form = this.formBuilder.group({
     _id: [''],
-    name: ['', [Validators.required, Validators.maxLength(200)]],
+    name: ['', [Validators.required, Validators.minLength(5) ,Validators.maxLength(100)]],
     category: ['', [Validators.required]]
   })
 
@@ -62,13 +62,13 @@ export class CourseFormComponent {
     }
 
     if(field?.hasError('minlength')){
-      const requiredLength: number = field.errors ? field.errors['minlength']['requiredlength'] : 5;
-      return `o Tamanho mínimo precisa ser de ${requiredLength} caracteres`
+      const requiredLength: number = field.errors?.['minlength']?.requiredLength || 5; // Note a correção na chave e na forma de acesso
+      return `O tamanho mínimo precisa ser de ${requiredLength} caracteres`;
     }
 
     if(field?.hasError('maxlength')){
-      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredlength'] : 200;
-      return `o Tamanho mínimo precisa ser de ${requiredLength} caracteres`
+      const requiredLength: number = field.errors?.['maxlength']?.requiredLength || 200; // Corrigido
+    return `O tamanho máximo é de ${requiredLength} caracteres`;
     }
     return 'Campo inválido'
   }
