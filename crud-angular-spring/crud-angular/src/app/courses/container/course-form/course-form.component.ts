@@ -68,7 +68,7 @@ export class CourseFormComponent {
 
     if(field?.hasError('maxlength')){
       const requiredLength: number = field.errors?.['maxlength']?.requiredLength || 200; // Corrigido
-    return `O tamanho máximo é de ${requiredLength} caracteres`;
+      return `O tamanho máximo é de ${requiredLength} caracteres`;
     }
     return 'Campo inválido'
   }
