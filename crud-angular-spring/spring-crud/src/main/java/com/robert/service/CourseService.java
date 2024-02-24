@@ -1,7 +1,6 @@
 package com.robert.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -37,7 +36,7 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
-    public Optional<Course> update(@NotNull @Positive Long id, @Valid Course course) {
+    public Course update(@NotNull @Positive Long id, @Valid Course course) {
 
         return courseRepository.findById(id)
                 .map(recordFound -> {
@@ -45,16 +44,12 @@ public class CourseService {
                     recordFound.setCategory(course.getCategory());
                     return courseRepository.save(recordFound);
 
-                });
+                }).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public boolean delete(@PathVariable  @NotNull @Positive Long id) {
-        return courseRepository.findById(id)
-                .map(recordFound -> {
-                    courseRepository.deleteById(id);
-                    return true;
-                })
-                .orElse(false);
+    public void delete(@PathVariable @NotNull @Positive Long id) {
+        courseRepository.delete(courseRepository.findById(id).orElseThrow(
+                () -> new RecordNotFoundException(id)));
     }
 
 }
