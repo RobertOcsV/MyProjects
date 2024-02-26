@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.robert.enums.Category;
 import com.robert.model.Course;
 import com.robert.repository.CourseRepository;
 
@@ -23,7 +24,7 @@ public class SpringCrudApplication {
 			courseRepository.deleteAll();
 			Course c = new Course();
 			c.setName("Angular com Spring");
-			c.setCategory("Front-end");
+			c.setCategory(Category.BACKEND);
 			courseRepository.save(c);
 		};
 	}
