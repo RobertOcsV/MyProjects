@@ -8,19 +8,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.robert.enums.Category;
 import com.robert.enums.Status;
 import com.robert.enums.converters.CategoryConverter;
+import com.robert.enums.converters.StatusConverter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
-import jakarta.persistence.Converter;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -48,6 +45,6 @@ public class Course {
 
     @NotNull
     @Column(length = 10, nullable = false)
-    @Convert(converter = CategoryConverter.class)
-    private Status status;
+    @Convert(converter = StatusConverter.class)
+    private Status status = Status.ACTIVE;
 }

@@ -5,11 +5,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.robert.dto.CourseDTO;
 import com.robert.dto.mapper.CourseMapper;
-import com.robert.enums.Category;
 import com.robert.exception.RecordNotFoundException;
 import com.robert.repository.CourseRepository;
 
@@ -36,7 +34,7 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
-    public CourseDTO findById(@PathVariable @NotNull @Positive Long id) {
+    public CourseDTO findById(@NotNull @Positive Long id) {
         return courseRepository.findById(id).map(courseMapper::toDTO)
         .orElseThrow(() -> new RecordNotFoundException(id));
     }
@@ -50,7 +48,7 @@ public class CourseService {
         return courseRepository.findById(id)
                 .map(recordFound -> {
                     recordFound.setName(course.name());
-                    recordFound.setCategory(Category.FRONTEND);
+                    recordFound.setCategory(this.courseMapper.convertCategoryValue(course.category()));
                     return courseMapper.toDTO(courseRepository.save(recordFound));
                 })
                 .orElseThrow(() -> new RecordNotFoundException(id));

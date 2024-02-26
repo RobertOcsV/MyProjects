@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import com.robert.dto.CourseDTO;
 import com.robert.enums.Category;
-import com.robert.enums.Status;
 import com.robert.model.Course;
 
 @Component
@@ -13,7 +12,7 @@ public class CourseMapper {
         if(course == null) {
             return null;
         }
-        return new CourseDTO(course.getId(), course.getName(), "Front-end");
+        return new CourseDTO(course.getId(), course.getName(), course.getCategory().getValue());
     }
 
     public Course toEntity(CourseDTO courseDTO) {
@@ -27,9 +26,22 @@ public class CourseMapper {
             course.setId(courseDTO.id());
         }
         course.setName(courseDTO.name());
-        course.setCategory(Category.FRONTEND);
-        course.setStatus(Status.ATIVO);
+        course.setCategory(convertCategoryValue(courseDTO.category()));
+        // course.setStatus(Status.ACTIVE);
         return course;
+    }
+
+
+    public Category convertCategoryValue(String value){
+        if(value == null){
+            return null;
+        }
+        
+        return switch (value) {
+            case "Front-end" -> Category.FRONTEND;
+            case "Back-end" -> Category.BACKEND;
+            default -> throw new IllegalArgumentException("Categoria inválida:  " + value);
+        };
     }
 
 }
