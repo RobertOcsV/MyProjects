@@ -33,6 +33,12 @@ public class SpringCrudApplication {
 			l.setCourse(c);
 			c.getLessons().add( l);
 
+			Lesson l1 = new Lesson();
+			l1.setName("Introdução");
+			l1.setYoutubeUrl("mLq2x5iJ5A");
+			l1.setCourse(c);
+			c.getLessons().add(l1);
+
 			courseRepository.save(c);
 		};
 	}
