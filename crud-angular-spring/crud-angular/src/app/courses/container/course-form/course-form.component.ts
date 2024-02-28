@@ -30,6 +30,7 @@ export class CourseFormComponent {
   ngOnInit(): void {
     const course: Course = this.route.snapshot.data['course'];
     this.form.setValue(course);
+    console.log(course);
   }
 
   onSubmit() {
