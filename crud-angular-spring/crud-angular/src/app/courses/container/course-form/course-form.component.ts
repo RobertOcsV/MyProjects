@@ -36,7 +36,7 @@ export class CourseFormComponent {
       _id: [course._id],
       name: [course.name, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       category: [course.category, [Validators.required]],
-      lessons: this.formBuilder.array(this.retrieveLessons(course))
+      lessons: this.formBuilder.array(this.retrieveLessons(course), Validators.required)
     })
     // this.form.setValue(course);
     console.log(this.form)
@@ -78,12 +78,17 @@ export class CourseFormComponent {
   }
 
   onSubmit() {
-    this.service.save(this.form.value).subscribe({
+
+    if(this.form.valid){
+       this.service.save(this.form.value).subscribe({
       next: () => this.onSucess(),
       error: () => {
         this.onError();
       },
     });
+    } else {
+      alert("Formulário inválido!")
+    }
   }
 
 
@@ -116,5 +121,10 @@ export class CourseFormComponent {
       return `O tamanho máximo é de ${requiredLength} caracteres`;
     }
     return 'Campo inválido'
+  }
+
+  isFormArrayRequired(){
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    return !lessons.valid && lessons.hasError('required') && lessons.touched;
   }
 }
