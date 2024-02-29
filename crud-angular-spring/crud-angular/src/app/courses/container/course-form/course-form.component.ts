@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from '../../model/course';
 import { Lesson } from '../../model/lesson';
+import { FormUtilsService } from '../../../shared/form/form-utils.service';
 
 @Component({
   selector: 'app-course-form',
@@ -27,7 +28,8 @@ export class CourseFormComponent {
     private formBuilder: NonNullableFormBuilder,
     private service: CoursesService,
     private location: Location,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    public formUtils: FormUtilsService) {
   }
 
   ngOnInit(): void {
@@ -39,9 +41,6 @@ export class CourseFormComponent {
       lessons: this.formBuilder.array(this.retrieveLessons(course), Validators.required)
     })
     // this.form.setValue(course);
-    console.log(this.form)
-    console.log(this.form.value)
-
   }
 
   private retrieveLessons(course: Course) {
@@ -66,7 +65,6 @@ export class CourseFormComponent {
     return (<UntypedFormArray>this.form.get('lessons')).controls;
   }
 
-
   addNewLesson() {
     const lessons = this.form.get('lessons') as UntypedFormArray;
     lessons.push(this.createLesson());
@@ -87,10 +85,9 @@ export class CourseFormComponent {
       },
     });
     } else {
-      alert("Formulário inválido!")
+      this.formUtils.validateAllFormFields(this.form);
     }
   }
-
 
   onCancel() {
     this.location.back();
@@ -105,26 +102,4 @@ export class CourseFormComponent {
     this._snackBar.open('Erro ao Salvar curso.', '', { duration: 5000 });
   }
 
-  getErrorMessage(fieldName: string) {
-    const field = this.form.get(fieldName)
-    if (field?.hasError('required')) {
-      return "Campo obrigatório"
-    }
-
-    if (field?.hasError('minlength')) {
-      const requiredLength: number = field.errors?.['minlength']?.requiredLength || 5; // Note a correção na chave e na forma de acesso
-      return `O tamanho mínimo precisa ser de ${requiredLength} caracteres`;
-    }
-
-    if (field?.hasError('maxlength')) {
-      const requiredLength: number = field.errors?.['maxlength']?.requiredLength || 200; // Corrigido
-      return `O tamanho máximo é de ${requiredLength} caracteres`;
-    }
-    return 'Campo inválido'
-  }
-
-  isFormArrayRequired(){
-    const lessons = this.form.get('lessons') as UntypedFormArray;
-    return !lessons.valid && lessons.hasError('required') && lessons.touched;
-  }
 }
