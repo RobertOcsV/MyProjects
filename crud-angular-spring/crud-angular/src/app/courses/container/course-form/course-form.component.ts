@@ -34,7 +34,7 @@ export class CourseFormComponent {
     const course: Course = this.route.snapshot.data['course'];
     this.form = this.formBuilder.group({
       _id: [course._id],
-      name: [course.name, [Validators.required, Validators.minLength(5) ,Validators.maxLength(100)]],
+      name: [course.name, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       category: [course.category, [Validators.required]],
       lessons: this.formBuilder.array(this.retrieveLessons(course))
     })
@@ -44,9 +44,9 @@ export class CourseFormComponent {
 
   }
 
-  private retrieveLessons(course: Course){
+  private retrieveLessons(course: Course) {
     const lessons = [];
-    if(course?.lessons){
+    if (course?.lessons) {
       course.lessons.forEach(lesson => lessons.push(this.createLesson(lesson)))
     } else {
       lessons.push(this.createLesson());
@@ -54,7 +54,7 @@ export class CourseFormComponent {
     return lessons;
   }
 
-  private createLesson(lesson: Lesson = {id: '', name: '', youtubeUrl: ''}){
+  private createLesson(lesson: Lesson = { id: '', name: '', youtubeUrl: '' }) {
     return this.formBuilder.group({
       id: [lesson.id],
       name: [lesson.name, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
@@ -62,8 +62,19 @@ export class CourseFormComponent {
     })
   }
 
-  getLessonsFormArray(){
+  getLessonsFormArray() {
     return (<UntypedFormArray>this.form.get('lessons')).controls;
+  }
+
+
+  addNewLesson() {
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    lessons.push(this.createLesson());
+  }
+
+  removeLesson(index: number) {
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    lessons.removeAt(index);
   }
 
   onSubmit() {
@@ -95,12 +106,12 @@ export class CourseFormComponent {
       return "Campo obrigatório"
     }
 
-    if(field?.hasError('minlength')){
+    if (field?.hasError('minlength')) {
       const requiredLength: number = field.errors?.['minlength']?.requiredLength || 5; // Note a correção na chave e na forma de acesso
       return `O tamanho mínimo precisa ser de ${requiredLength} caracteres`;
     }
 
-    if(field?.hasError('maxlength')){
+    if (field?.hasError('maxlength')) {
       const requiredLength: number = field.errors?.['maxlength']?.requiredLength || 200; // Corrigido
       return `O tamanho máximo é de ${requiredLength} caracteres`;
     }
