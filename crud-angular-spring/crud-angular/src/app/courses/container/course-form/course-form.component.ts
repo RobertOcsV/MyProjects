@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, UntypedFormArray, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
 import { CoursesService } from '../../services/courses.service';
@@ -60,6 +60,10 @@ export class CourseFormComponent {
       name: [lesson.name, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
       youtubeUrl: [lesson.youtubeUrl, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]]
     })
+  }
+
+  getLessonsFormArray(){
+    return (<UntypedFormArray>this.form.get('lessons')).controls;
   }
 
   onSubmit() {
