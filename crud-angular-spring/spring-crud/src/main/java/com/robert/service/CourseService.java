@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import com.robert.dto.CourseDTO;
 import com.robert.dto.mapper.CourseMapper;
 import com.robert.exception.RecordNotFoundException;
+import com.robert.model.Course;
 import com.robert.repository.CourseRepository;
 
 import jakarta.validation.Valid;
@@ -36,28 +37,33 @@ public class CourseService {
 
     public CourseDTO findById(@NotNull @Positive Long id) {
         return courseRepository.findById(id).map(courseMapper::toDTO)
-        .orElseThrow(() -> new RecordNotFoundException(id));
+                .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public CourseDTO create(@Valid @NotNull CourseDTO course) {
         return courseMapper.toDTO(courseRepository.save(courseMapper.toEntity(course)));
     }
 
-    public CourseDTO update(@NotNull @Positive Long id, @NotNull CourseDTO course) {        
-        
+    public CourseDTO update(@NotNull @Positive Long id, @NotNull CourseDTO courseDTO) {
+
         return courseRepository.findById(id)
                 .map(recordFound -> {
-                    recordFound.setName(course.name());
-                    recordFound.setCategory(this.courseMapper.convertCategoryValue(course.category()));
+                    Course course = courseMapper.toEntity(courseDTO);
+                    recordFound.setName(courseDTO.name());
+                    recordFound.setCategory(this.courseMapper.convertCategoryValue(courseDTO.category()));
+                    // recordFound.setLessons(course.getLessons());
+                    recordFound.getLessons().clear();
+                    course.getLessons().forEach(recordFound.getLessons()::add); //lambda form
+                    // course.getLessons().forEach(lesson -> recordFound.getLessons().add(lesson));
                     return courseMapper.toDTO(courseRepository.save(recordFound));
                 })
                 .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public void delete(@NotNull @Positive Long id) {
-       
+
         courseRepository.delete(courseRepository.findById(id)
-        .orElseThrow(() -> new RecordNotFoundException(id)));
+                .orElseThrow(() -> new RecordNotFoundException(id)));
     }
 
 }
