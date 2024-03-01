@@ -57,7 +57,9 @@ export class CourseFormComponent {
     return this.formBuilder.group({
       id: [lesson.id],
       name: [lesson.name, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
-      youtubeUrl: [lesson.youtubeUrl, [Validators.required, Validators.minLength(5), Validators.maxLength(100)]]
+      youtubeUrl: [lesson.youtubeUrl, [Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(11)]]
     })
   }
 
