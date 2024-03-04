@@ -1,11 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../model/course';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CategoryPipe } from '../../../shared/pipes/category.pipe';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 @Component({
-  selector: 'app-courses-list',
-  templateUrl: './courses-list.component.html',
-  styleUrl: './courses-list.component.scss'
+    selector: 'app-courses-list',
+    templateUrl: './courses-list.component.html',
+    styleUrl: './courses-list.component.scss',
+    standalone: true,
+    imports: [MatTableModule, MatIconModule, MatButtonModule, RouterLink, CategoryPipe]
 })
 export class CoursesListComponent {
   @Input() courses: Course[] = [];
