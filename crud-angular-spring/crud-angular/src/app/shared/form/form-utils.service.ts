@@ -25,6 +25,7 @@ export class FormUtilsService {
     const field = formGroup.get(fieldName) as UntypedFormControl;
     return this.getErrorMessageFromField(field);
   }
+
   getErrorMessageFromField(field: UntypedFormControl): string {
 
     if (field?.hasError('required')) {
