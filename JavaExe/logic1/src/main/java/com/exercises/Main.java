@@ -12,5 +12,7 @@ public class Main {
 
         }
 
+        new Thread(() -> System.out.println("teste")).run();
+
     }
 }
