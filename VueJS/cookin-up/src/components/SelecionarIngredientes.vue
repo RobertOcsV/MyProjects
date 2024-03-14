@@ -13,7 +13,7 @@ import type ICategoria from '@/interfaces/ICategoria';
         }
     }
 </script>
-
+  
 <template>
         <section class="selecionar-ingredientes">
             <h1 class="cabecalho titulo-ingredientes">
